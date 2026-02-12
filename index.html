@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery.js"></script>
+    <title>Activity #3</title>
+    <style>
+
+    .clear-button { 
+        display: none; 
+        margin-left: 8px; 
+    }
+
+    .result-span { 
+        display: none; 
+        margin-left: 6px; 
+        font-weight: bold; 
+    }
+
+
+    body{
+        background:#f5f7f8;
+        font-family:Arial, Helvetica, sans-serif;
+        margin:0;
+        padding:20px;
+    }
+
+    .main-container{
+        width:1100px;
+        margin:auto;
+        background:white;
+        padding:15px;
+        border-radius:10px;
+        box-shadow:0px 5px 18px rgba(0,0,0,0.25);
+    }
+
+    h1{
+        text-align:center;
+        color:#b30000;
+        font-size:40px;
+        font-weight:bold;
+        margin-bottom:15px;
+    }
+
+    .content{
+        display:flex;
+        gap:12px;
+    }
+
+    .left-panel,
+    .right-panel{
+        background:#e63946;
+        padding:15px;
+        border-radius:8px;
+        border:2px solid #ffffff;
+    }
+
+    .left-panel{ width:65%; }
+    .right-panel{ width:35%; }
+
+    h2{
+        color:white;
+        border-bottom:2px solid rgba(255,255,255,0.6);
+        padding-bottom:5px;
+    }
+
+    h3{
+        color:white;
+        margin:8px 0;
+        font-weight:normal;
+    }
+
+    .right-panel h3{
+        background:rgba(255,255,255,0.15);
+        padding:6px;
+        border-radius:5px;
+    }
+
+    input{
+        padding:6px;
+        border-radius:4px;
+        border:1px solid #ddd;
+        background:#fffafa;
+        margin:3px;
+    }
+
+    button{
+        width:48%;
+        padding:12px;
+        font-weight:bold;
+        border-radius:6px;
+        border:none;
+        background:#ffffff;
+        color:#b30000;
+        cursor:pointer;
+        margin-top:10px;
+    }
+
+    button:hover{
+        background:#ffe5e5;
+    }
+
+    .clear-button{
+        display:none;
+    }
+
+    .result-span{
+        display:none;
+        font-weight:bold;
+        color:#fffacd;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1 style="text-align: center;">GRC GRADING SYSTEM</h1>
+            <div class="content">
+
+                <div class="left-panel">
+                    <h2>Student Information</h2>
+                    <h3>Enter ID: <input id="id" type="text" placeholder="ID Student"></h3>
+                    <h3>Enter Name:
+                        <input id="Fname" type="text" placeholder="Last Name"><span id="Fname-display"></span>,
+                        <input id="Lname" type="text" placeholder="First Name"><span id="Lname-display"></span>
+                        <input id="Mname" type="text" placeholder="Middle Name"><span id="Mname-display"></span>
+                    </h3>
+                    <h3>Enter Course & Section: <input id="numid" placeholder="Course & Section"></h3><br>
+                
+                    <h2>Grade Computation</h2>
+                
+                    <h3>Midterm(50%)</h3>
+
+
+                        <h3 id="acts">Activities: (((<input id="rawscore1" placeholder="Raw Score" type="text"> / <input id="TotalScore1" placeholder="Total Score" type="text">) * 50 ) + 50 ) * 40% <span id="result1" class="result-span">40.00%</span><button id="clear1" class="clear-button">Clear</button></h3>
+                        <h3 id="qz">Quizzes:   (((<input id="rawscore2" placeholder="Raw Score" type="text"> / <input id="TotalScore2" placeholder="Total Score" type="text">) * 50 ) + 50 ) * 20% <span id="result2" class="result-span">20.00%</span><button id="clear2" class="clear-button">Clear</button></h3>
+                        <h3 id="prel">Prelim:    (((<input id="rawscore3" placeholder="Raw Score" type="text"> / <input id="TotalScore3" placeholder="Total Score" type="text">) * 50 ) + 50 ) * 15% <span id="result3" class="result-span">15.00%</span><button id="clear3" class="clear-button">Clear</button></h3>
+                        <h3 id="midt">Midterm:   (((<input id="rawscore4" placeholder="Raw Score" type="text"> / <input id="TotalScore4" placeholder="Total Score" type="text">) * 50 ) + 50 ) * 25% <span id="result4" class="result-span">25.00%</span><button id="clear4" class="clear-button">Clear</button></h3>
+
+
+                        <h2>Final(50%)</h2>
+
+
+                        <h3 id="acts_f">Activities: (((<input id="rawscore1_f" placeholder="Raw Score" type="text"> / <input id="TotalScore1_f" placeholder="Total Score" type="text">) * 50 ) + 50 ) * 40% <span id="result5" class="result-span">40.00%</span><button id="clear1_f" class="clear-button">Clear</button></h3>
+                        <h3 id="qz_f">Quizzes:    (((<input id="rawscore2_f" placeholder="Raw Score" type="text"> / <input id="TotalScore2_f" placeholder="Total Score" type="text">) * 50 ) + 50 ) * 20% <span id="result6" class="result-span">20.00%</span><button id="clear2_f" class="clear-button">Clear</button></h3>
+                        <h3 id="final_f">Final:      (((<input id="rawscore3_f" placeholder="Raw Score" type="text"> / <input id="TotalScore3_f" placeholder="Total Score" type="text">) * 50 ) + 50 ) * 40% <span id="result7" class="result-span">40.00%</span><button id="clear3_f" class="clear-button">Clear</button></h3>
+                </div>
+                <div class="right-panel">
+                    <h2 id="output">Output</h2>
+        
+                    <h3 id="out-id-num">ID NUMBER:</h3>
+                    <h3 id="out-name">NAME:</h3>
+                    <h3 id="out-course-section">COURSE & SECTION:</h3>
+
+
+                    <h3 id="out-midterm">MIDTERM GRADE(50%):</h3>
+                    <h3 id="out-final">FINAL GRADE:(50%)</h3>
+
+
+                    <h3 id="final-average">FINAL AVERAGE:</h3>
+                    <h3 id="remarks">REMARKS:</h3>
+
+
+                    <button id="set">Set</button><button id="clear">Clear</button>
+                </div>       
+            </div>
+    </div>    
+        <script>
+            $(document).ready(function() {
+                $("#clear1").click(function() {
+                    $("#rawscore1, #TotalScore1").val("");
+                    $("#result1").text("").hide();
+                    $("#clear1").hide();
+                });
+                $("#clear2").click(function() {
+                    $("#rawscore2, #TotalScore2").val("");
+                    $("#result2").text("").hide();
+                    $("#clear2").hide();
+                });
+                $("#clear3").click(function() {
+                    $("#rawscore3, #TotalScore3").val("");
+                    $("#result3").text("").hide();
+                    $("#clear3").hide();
+                });
+                $("#clear4").click(function() {
+                    $("#rawscore4, #TotalScore4").val("");
+                    $("#result4").text("").hide();
+                    $("#clear4").hide();
+                });
+                $("#clear1_f").click(function() {
+                    $("#rawscore1_f, #TotalScore1_f").val("");
+                    $("#result5").text("").hide();
+                    $("#clear1_f").hide();
+                });
+                $("#clear2_f").click(function() {
+                    $("#rawscore2_f, #TotalScore2_f").val("");
+                    $("#result6").text("").hide();
+                    $("#clear2_f").hide();
+                });
+                $("#clear3_f").click(function() {
+                    $("#rawscore3_f, #TotalScore3_f").val("");
+                    $("#result7").text("").hide();
+                    $("#clear3_f").hide();
+                });
+
+
+                function computeMidAct() {
+                    raw = parseFloat($("#rawscore1").val());
+                    total = parseFloat($("#TotalScore1").val());
+                        if (!isNaN(raw) && !isNaN(total) && total > 0) {
+                            let percent = (((raw / total) * 50) + 50) * 0.4;
+                            $("#result1").text(percent.toFixed(2) + "%").show();
+                            $("#clear1").show();
+                        } else {
+                                $("#result1").text("").hide();
+                                $("#clear1").hide();
+                        }
+                }
+
+
+                function computeMidQz() {
+                    raw = parseFloat($("#rawscore2").val());
+                    total = parseFloat($("#TotalScore2").val());
+                    if (!isNaN(raw) && !isNaN(total) && total > 0) {
+                        let percent = (((raw / total) * 50) + 50) * 0.2;
+                        $("#result2").text(percent.toFixed(2) + "%").show();
+                        $("#clear2").show();
+                    } else {
+                        $("#result2").text("").hide();
+                        $("#clear2").hide();
+                    }
+                }
+
+
+                function computePrelimFinal() {
+                    raw = parseFloat($("#rawscore3").val());
+                    total = parseFloat($("#TotalScore3").val());
+                    if (!isNaN(raw) && !isNaN(total) && total > 0) {
+                        let percentPrelim = (((raw / total) * 50) + 50) * 0.15;
+                        $("#result3").text(percentPrelim.toFixed(2) + "%").show();
+                        $("#clear3").show();
+                    } else {
+                        $("#result3").text("").hide();
+                        $("#clear3").hide();
+                    }
+                }
+
+
+                function computeMidExam() {
+                    raw = parseFloat($("#rawscore4").val());
+                    total = parseFloat($("#TotalScore4").val());
+                    if (!isNaN(raw) && !isNaN(total) && total > 0) {
+                        let percent = (((raw / total) * 50) + 50) * 0.25;
+                        $("#result4").text(percent.toFixed(2) + "%").show();
+                        $("#clear4").show();
+                    } else {
+                        $("#result4").text("").hide();
+                        $("#clear4").hide();
+                    }
+                }
+
+
+                function computeFinalAct() {
+                    let raw = parseFloat($("#rawscore1_f").val());
+                    let total = parseFloat($("#TotalScore1_f").val());
+                    if (!isNaN(raw) && !isNaN(total) && total > 0) {
+                        let percent = (((raw / total) * 50) + 50) * 0.4;
+                        $("#result5").text(percent.toFixed(2) + "%").show();
+                        $("#clear1_f").show();
+                    } else {
+                        $("#result5").text("").hide();
+                        $("#clear1_f").hide();
+                    }
+                }
+
+
+                function computeFinalQz() {
+                    let raw = parseFloat($("#rawscore2_f").val());
+                    let total = parseFloat($("#TotalScore2_f").val());
+                    if (!isNaN(raw) && !isNaN(total) && total > 0) {
+                        let percent = (((raw / total) * 50) + 50) * 0.2;
+                        $("#result6").text(percent.toFixed(2) + "%").show();
+                        $("#clear2_f").show();
+                    } else {
+                        $("#result6").text("").hide();
+                        $("#clear2_f").hide();
+                    }
+                }
+
+
+                function computeFinalExam() {
+                    let raw = parseFloat($("#rawscore3_f").val());
+                    let total = parseFloat($("#TotalScore3_f").val());
+                    if (!isNaN(raw) && !isNaN(total) && total > 0) {
+                        let percent = (((raw / total) * 50) + 50) * 0.4;
+                        $("#result7").text(percent.toFixed(2) + "%").show();
+                        $("#clear3_f").show();
+                    } else {
+                        $("#result7").text("").hide();
+                        $("#clear3_f").hide();
+                    }
+                }
+
+
+                $("#rawscore1, #TotalScore1").on('input', computeMidAct);
+                $("#rawscore2, #TotalScore2").on('input', computeMidQz);
+                $("#rawscore3, #TotalScore3").on('input', computePrelimFinal);
+                $("#rawscore4, #TotalScore4").on('input', computeMidExam);
+                $("#rawscore1_f, #TotalScore1_f").on('input', computeFinalAct);
+                $("#rawscore2_f, #TotalScore2_f").on('input', computeFinalQz);
+                $("#rawscore3_f, #TotalScore3_f").on('input', computeFinalExam);
+                $("#clear1, #clear2, #clear3, #clear4, #clear1_f, #clear2_f, #clear3_f").hide();
+                $("#result1, #result2, #result3, #result4, #result5, #result6, #result7").hide();
+
+
+                $("#set").click(function() {
+                    id = $("#id").val();
+                    fname = $("#Lname").val();
+                    lname = $("#Fname").val();
+                    mname = $("#Mname").val();
+                    course = $("#numid").val();
+
+
+                    $("#out-id-num").text("ID NUMBER: " + id);
+                    $("#out-name").text("NAME: " + lname + ", " + fname + " " + mname);
+                    $("#out-course-section").text("COURSE & SECTION: " + course);
+
+
+                    raw1 = parseFloat($("#rawscore1").val()) || 0;
+                    tot1 = parseFloat($("#TotalScore1").val()) || 1;
+                    mid_act = (((raw1 / tot1) * 50) + 50) * 0.4;
+
+
+                    raw2 = parseFloat($("#rawscore2").val()) || 0;
+                    tot2 = parseFloat($("#TotalScore2").val()) || 1;
+                    mid_qz = (((raw2 / tot2) * 50) + 50) * 0.2;
+
+
+                    raw3 = parseFloat($("#rawscore3").val()) || 0;
+                    tot3 = parseFloat($("#TotalScore3").val()) || 1;
+                    prelim = (((raw3 / tot3) * 50) + 50) * 0.15;
+
+
+                    raw4 = parseFloat($("#rawscore4").val()) || 0;
+                    tot4 = parseFloat($("#TotalScore4").val()) || 1;
+                    mid_exam = (((raw4 / tot4) * 50) + 50) * 0.25;
+
+
+                    mid_grade = mid_act + mid_qz + prelim + mid_exam;
+                    $("#out-midterm").text("MIDTERM GRADE(50%): " + mid_grade.toFixed(2));
+
+
+                    raw1f = parseFloat($("#rawscore1_f").val()) || 0;
+                    tot1f = parseFloat($("#TotalScore1_f").val()) || 1;
+                    fin_act = (((raw1f / tot1f) * 50) + 50) * 0.4;
+
+
+                    raw2f = parseFloat($("#rawscore2_f").val()) || 0;
+                    tot2f = parseFloat($("#TotalScore2_f").val()) || 1;
+                    fin_qz = (((raw2f / tot2f) * 50) + 50) * 0.2;
+
+
+                    raw3f = parseFloat($("#rawscore3_f").val()) || 0;
+                    tot3f = parseFloat($("#TotalScore3_f").val()) || 1;
+                    fin_exam = (((raw3f / tot3f) * 50) + 50) * 0.4;
+
+
+                    fin_grade = fin_act + fin_qz + fin_exam;
+                    $("#out-final").text("FINAL GRADE:(50%) " + fin_grade.toFixed(2));
+
+
+                    average = (mid_grade + fin_grade) / 2;
+                    $("#final-average").text("FINAL AVERAGE: " + average.toFixed(2));
+
+
+                    let gp = 'Invalid';
+                    if (average <= 74.49 && average >= 0) {
+                        gp = 5.00;
+                    } else if (average <= 77.99) {
+                        gp = 3.00;
+                    } else if (average <= 80.99) {
+                        gp = 2.75;
+                    } else if (average <= 83.99) {
+                        gp = 2.50;
+                    } else if (average <= 86.99) {
+                        gp = 2.25;
+                    } else if (average <= 89.99) {
+                        gp = 2.00;
+                    } else if (average <= 92.99) {
+                        gp = 1.75;
+                    } else if (average <= 95.99) {
+                        gp = 1.50;
+                    } else if (average <= 98.99) {
+                        gp = 1.25;
+                    } else if (average <= 100) {
+                        gp = 1.00;
+                    }
+
+
+                    if (gp === 'Invalid') {
+                        $("#remarks").text("REMARKS: Invalid");
+                    } else if (gp === 5.00) {
+                        $("#remarks").text("REMARKS: " + gp.toFixed(2) + ", FAILED");
+                    } else {
+                        $("#remarks").text("REMARKS: " + gp.toFixed(2));
+                    }
+                });
+
+
+                $("#clear").click(function() {
+                    $("#id, #Lname, #Fname, #Mname, #numid, #rawscore1, #TotalScore1, #rawscore2, #TotalScore2, #rawscore3, #TotalScore3, #rawscore4, #TotalScore4").val("");
+                    $("#out-id-num").text("ID NUMBER:");
+                    $("#out-name").text("NAME:");
+                    $("#out-course-section").text("COURSE & SECTION:");
+                    $("#out-midterm").text("MIDTERM GRADE(50%):");
+                    $("#out-final").text("FINAL GRADE:(50%)");
+                    $("#final-average").text("FINAL AVERAGE:");
+                    $("#remarks").text("REMARKS:");
+                    $("#result1, #result2, #result3, #result4, #result5, #result6, #result7").text("").hide();
+                    $("#rawscore1_f, #TotalScore1_f, #rawscore2_f, #TotalScore2_f, #rawscore3_f, #TotalScore3_f").val("");
+                    $("#clear1, #clear2, #clear3, #clear4, #clear1_f, #clear2_f, #clear3_f").hide();
+                });
+            });
+        </script>
+</body>
+</html>
+
+
