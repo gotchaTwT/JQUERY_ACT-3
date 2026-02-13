@@ -261,8 +261,8 @@
 
 
                 function computeFinalAct() {
-                    let raw = parseFloat($("#rawscore1_f").val());
-                    let total = parseFloat($("#TotalScore1_f").val());
+                    raw = parseFloat($("#rawscore1_f").val());
+                    total = parseFloat($("#TotalScore1_f").val());
                     if (!isNaN(raw) && !isNaN(total) && total > 0) {
                         let percent = (((raw / total) * 50) + 50) * 0.4;
                         $("#result5").text(percent.toFixed(2) + "%").show();
@@ -275,8 +275,8 @@
 
 
                 function computeFinalQz() {
-                    let raw = parseFloat($("#rawscore2_f").val());
-                    let total = parseFloat($("#TotalScore2_f").val());
+                    raw = parseFloat($("#rawscore2_f").val());
+                    total = parseFloat($("#TotalScore2_f").val());
                     if (!isNaN(raw) && !isNaN(total) && total > 0) {
                         let percent = (((raw / total) * 50) + 50) * 0.2;
                         $("#result6").text(percent.toFixed(2) + "%").show();
@@ -289,8 +289,8 @@
 
 
                 function computeFinalExam() {
-                    let raw = parseFloat($("#rawscore3_f").val());
-                    let total = parseFloat($("#TotalScore3_f").val());
+                    raw = parseFloat($("#rawscore3_f").val());
+                    total = parseFloat($("#TotalScore3_f").val());
                     if (!isNaN(raw) && !isNaN(total) && total > 0) {
                         let percent = (((raw / total) * 50) + 50) * 0.4;
                         $("#result7").text(percent.toFixed(2) + "%").show();
@@ -373,7 +373,7 @@
                     $("#final-average").text("FINAL AVERAGE: " + average.toFixed(2));
 
 
-                    let gp = 'Invalid';
+                    gp = 'Invalid';
                     if (average <= 74.49 && average >= 0) {
                         gp = 5.00;
                     } else if (average <= 77.99) {
